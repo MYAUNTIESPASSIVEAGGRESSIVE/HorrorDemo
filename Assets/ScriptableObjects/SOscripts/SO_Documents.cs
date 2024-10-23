@@ -12,7 +12,5 @@ public class SO_Documents : ScriptableObject
 
     public Sprite DocumentImage;
 
-    public TextMeshPro DocumentText;
 
-    public TextMeshPro ClearDocumentText;
 }
