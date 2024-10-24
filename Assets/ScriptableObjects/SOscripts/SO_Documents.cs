@@ -5,11 +5,17 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Docuemnts", menuName = "Documents/DocumentReadable", order = 1)]
 public class SO_Documents : ScriptableObject
 {
-    public string DocName;
+    public string DocumentName;
+    public enum DocType
+    {
+        Professional,
+        Medical,
+        Letter,
+        Ripped
+    }
+    public DocType DocumentType;
 
-    public string DocType;
+    public string DocumentDesc;
 
-    public string DocDesc;
-
-    public Sprite DocBackground;
+    public Sprite DocumentBackground;
 }
