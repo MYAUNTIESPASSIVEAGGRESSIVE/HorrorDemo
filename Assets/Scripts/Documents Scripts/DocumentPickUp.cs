@@ -11,11 +11,9 @@ public class DocumentPickUp : MonoBehaviour
     public TMP_Text WrittenText;
     public TMP_Text ClearText;
 
-    private Sprite DocumentSprite;
-
     private void Start()
     {
-        DocumentSprite = Document.DocumentBackground;
+        gameObject.GetComponent<SpriteRenderer>().sprite = Document.DocumentBackground;
 
 
     }
