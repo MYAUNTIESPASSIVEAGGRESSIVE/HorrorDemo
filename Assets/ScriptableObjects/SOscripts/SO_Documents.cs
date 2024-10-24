@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu (fileName = "New Document", menuName = "Readable Document")]
+[CreateAssetMenu (fileName = "Docuemnts", menuName = "Documents/DocumentReadable", order = 1)]
 public class SO_Documents : ScriptableObject
 {
-    public string DocumentName;
-    public string DocumentType;
+    public string DocName;
 
-    public Sprite DocumentImage;
+    public string DocType;
 
+    public string DocDesc;
 
+    public Sprite DocBackground;
 }

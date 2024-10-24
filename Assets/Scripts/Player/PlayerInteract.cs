@@ -15,7 +15,7 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit hitobject;
 
-        if (Physics.Raycast(Camera.transform.position, transform.forward, out hitobject, RayLength, InteractableLayer))
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.forward), out hitobject, RayLength, InteractableLayer))
         {
             // show interable tooltip
             // if e is pressed then show the letter or documents or whatnot
