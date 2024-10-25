@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<string> InvItems = new List<string>();
+    public List<GameObject> InvItems = new List<GameObject>();
     public List<string> InvCode = new List<string>();
 
-    //public Dictionary<GameObject> InvObjects = new Dictionary<GameObject>();
+    public Dictionary<string,GameObject> InvObjects = new Dictionary<string,GameObject>();
+
+    public static InventoryManager instance;
+
+    private void Start()
+    {
+
+
+        instance = this;
+    }
 }

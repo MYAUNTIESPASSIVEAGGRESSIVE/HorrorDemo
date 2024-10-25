@@ -7,7 +7,7 @@ public class PlayerInteract : MonoBehaviour
 {
     [Header("References")]
     public GameObject Camera;
-    private DocumentPickUp DocumentScript;
+    public DocumentPickUp Documents;
 
     [Header("Interaction Variables")]
     public LayerMask InteractableLayer;
@@ -17,10 +17,12 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         ViewingDocument = false;
+        
     }
 
     void Update()
     {
+
         RaycastHit hitobject;
 
         if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.forward), out hitobject, RayLength, InteractableLayer))
@@ -32,12 +34,13 @@ public class PlayerInteract : MonoBehaviour
                 if (hitobject.transform.CompareTag("Document"))
                 {
                     ViewingDocument = true;
-                    DocumentScript.OnObjectPickedUp();
+                    hitobject.transform.GetComponent<DocumentPickUp>();
+
                 }
             }
             if (Input.GetKeyDown(KeyCode.Tab) && ViewingDocument)
             {
-                DocumentScript.ShowClearVersion();
+
             }
         }
     }
