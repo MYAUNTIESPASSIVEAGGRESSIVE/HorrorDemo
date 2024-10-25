@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class DocumentPickUp : MonoBehaviour
 {
-    public SO_Documents Document;
+    public PlayerControl PlayerMovement;
     public GameObject PickupObject;
+    public GameObject ReadHolder;
+    public GameObject ClearVersionCanvas;
 
     public TMP_Text WrittenText;
     public TMP_Text ClearText;
 
-    private void Start()
+    public void OnObjectPickedUp()
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = Document.DocumentBackground;
-
-
+        PickupObject.transform.position = ReadHolder.transform.position;
     }
 
-    private void Update()
+    public void ShowClearVersion()
     {
-
+        ClearText.text = WrittenText.text;
     }
 }

@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     public float MoveSpeed = 5f;
     public float LookRotSpeed = 5f;
     public float LookVertSpeed = 5f;
+    public bool LookingAtItem = false;
     private float HozPos;
     private float VertPos;
     private float CamRotX = 0f;
