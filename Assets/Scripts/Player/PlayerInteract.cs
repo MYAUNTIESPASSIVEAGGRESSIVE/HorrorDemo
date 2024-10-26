@@ -3,48 +3,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Interactable interface that allows for multiple objects to call different actions on interaction.
+interface IInteractable
+{
+    public void OnInteract(){}
+}
+
 public class PlayerInteract : MonoBehaviour
 {
     [Header("References")]
     public GameObject Camera;
-    public DocumentPickUp Documents;
+    public PlayerControl PlayerScript;
 
     [Header("Interaction Variables")]
     public LayerMask InteractableLayer;
     public float RayLength = 10f;
-    private bool ViewingDocument;
+    private RaycastHit hitobject;
 
     private void Start()
     {
-        ViewingDocument = false;
-        
+
     }
 
+    // raycast which checks for the interactable layer 
     void Update()
     {
 
-        RaycastHit hitobject;
-
-        if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.forward), out hitobject, RayLength, InteractableLayer))
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.forward), 
+            out hitobject, RayLength, InteractableLayer))
         {
+            // show the appropriate tooltip
             ShowTooltip();
 
-            if (Input.GetKeyDown(KeyCode.E))
+            // selection key and cheks for interactable interface which then calls the on interact
+            if (Input.GetKeyDown(KeyCode.E) && 
+                hitobject.collider.gameObject.TryGetComponent(out IInteractable interactobj))
             {
-                if (hitobject.transform.CompareTag("Document"))
-                {
-                    ViewingDocument = true;
-                    hitobject.transform.GetComponent<DocumentPickUp>();
-
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Tab) && ViewingDocument)
-            {
-
+                PlayerScript.LookingAtItem = true;
+                interactobj.OnInteract();
             }
         }
     }
 
+    // function which changes the tooltip canvas text to match the object
     private void ShowTooltip()
     {
         
