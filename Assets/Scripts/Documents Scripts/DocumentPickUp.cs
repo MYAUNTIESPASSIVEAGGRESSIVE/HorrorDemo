@@ -14,13 +14,18 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     public TMP_Text WrittenText;
     public TMP_Text ClearText;
 
+    [Header("Reading Variables")]
+    private bool ClearShow;
+
     public void OnInteract()
     {
         PickupObject.transform.position = ReadHolder.transform.position;
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            ShowClearVersion();
+            ClearShow = !ClearShow;
+
+            if(ClearShow) ShowClearVersion(); else ClearVersionCanvas.SetActive(false);
         }
     }
 

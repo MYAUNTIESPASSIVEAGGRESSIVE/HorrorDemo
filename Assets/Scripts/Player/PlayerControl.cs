@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour
         HozPos = Input.GetAxisRaw("Horizontal");
         VertPos = Input.GetAxisRaw("Vertical");
 
-        if (LookingAtItem) CharacterMovement();
+        if (!LookingAtItem) CharacterMovement();
 
         CameraRotation();
     }
