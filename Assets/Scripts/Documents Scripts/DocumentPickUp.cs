@@ -12,40 +12,55 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     public GameObject ReadHolder;
     public GameObject ClearVersionCanvas;
     public SO_InventoryItems Document;
-    public InventoryManager InvManager;
+    public PlayerControl PlayerScript;
 
     [Header("Text References")]
     public TMP_Text WrittenText;
     public TMP_Text ClearText;
 
     private bool ClearShow;
+    private bool ViewingDocument;
+
+    // event which uses the pickups SO and add it to the inventory
+    public static event Action<SO_InventoryItems> AddToInventory;
 
     public void OnInteract()
     {
-        Debug.Log("Interacted");
-
+        // document is moved in front of the player and is now readable
         PickupObject.transform.position = ReadHolder.transform.position;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ClearShow = !ClearShow;
-
-            if(ClearShow) ShowClearVersion(); else ClearVersionCanvas.SetActive(false);
-        }
-
-        if(!ClearShow && Input.GetKeyDown(KeyCode.E))
-        {
-            // adds the document to the inventory
-            InvManager.Add(Document);
-        }
+        ViewingDocument = true;
     }
-
 
 
     private void ShowClearVersion()
     {
+        // the clear text is now the same as the written text on the document and the clear canvas is enabled
         ClearText.text = WrittenText.text;
 
         ClearVersionCanvas.SetActive(true);
+    }
+
+    void Update()
+    {
+        if (ViewingDocument)
+        {
+            // when tab is pressed then the clear version of the document is now visable
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                ClearShow = !ClearShow;
+                // if the clear version is shown then function is enabled
+                if (ClearShow) ShowClearVersion(); else ClearVersionCanvas.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                //adds item to the inventory on exit
+                AddToInventory.Invoke(Document);
+                Destroy(gameObject);
+                PlayerScript.LookingAtItem = false;
+                ViewingDocument = false;
+            }
+        }
     }
 }

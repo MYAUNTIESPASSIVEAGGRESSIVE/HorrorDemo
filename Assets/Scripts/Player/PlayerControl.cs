@@ -9,12 +9,14 @@ public class PlayerControl : MonoBehaviour
     public CharacterController PlayerController;
     public Transform PlTransform;
     public Transform CamHolder;
+    public Canvas InventoryCanvas;
 
     [Header("Player Variables")]
     public float MoveSpeed = 5f;
     public float LookRotSpeed = 5f;
     public float LookVertSpeed = 5f;
     public bool LookingAtItem = false;
+    public bool Paused = false;
     private float HozPos;
     private float VertPos;
     private float CamRotX = 0f;
@@ -30,9 +32,20 @@ public class PlayerControl : MonoBehaviour
         HozPos = Input.GetAxisRaw("Horizontal");
         VertPos = Input.GetAxisRaw("Vertical");
 
-        if (!LookingAtItem) CharacterMovement();
+        // if they are paused they cannot move or look around
+        if (!Paused)
+        {
+            // if the player is looking at an item then they will not be able to move.
+            if (!LookingAtItem) CharacterMovement();
 
-        CameraRotation();
+            CameraRotation();
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                InventoryCanvas.gameObject.SetActive(true);
+                Paused = true;
+            }
+        }
     }
 
     private void CameraRotation()

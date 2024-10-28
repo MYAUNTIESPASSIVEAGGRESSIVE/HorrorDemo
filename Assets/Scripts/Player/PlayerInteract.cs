@@ -51,4 +51,9 @@ public class PlayerInteract : MonoBehaviour
     {
         
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(Camera.transform.position, Camera.transform.forward * RayLength);
+    }
 }

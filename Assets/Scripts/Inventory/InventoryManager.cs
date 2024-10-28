@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     public List<InventoryItemData> InvItems;
 
-    public Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
+    private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
 
     public static InventoryManager instance;
 
@@ -17,15 +17,16 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        DocumentPickUp.AddToInventory += Add;
+    }
+    private void OnDisable ()
+    {
+        DocumentPickUp.AddToInventory -= Add;
     }
 
     public void Add(SO_InventoryItems SOitem)
     {
-        if (InvObjects.TryGetValue(SOitem, out InventoryItemData item))
-        {
-            InventoryItemData addObj = new InventoryItemData(SOitem);
-            InvItems.Add(addObj);
-        }
+        InventoryItemData addObj = new InventoryItemData(SOitem);
+        InvItems.Add(addObj);
     }
 }
