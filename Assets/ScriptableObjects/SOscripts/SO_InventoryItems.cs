@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu (fileName = "Inventory Item", menuName = "Inventory/ Create Inventory Item", order = 1)]
 public class SO_InventoryItems : ScriptableObject
 {
     public string ItemName;
@@ -9,14 +10,4 @@ public class SO_InventoryItems : ScriptableObject
     public string ItemDescription;
 
     public Sprite ItemIcon;
-
-    public enum Type
-    {
-        Document,
-        Letter,
-        Object,
-        Puzzle
-    }
-
-    public Type ItemType;
 }

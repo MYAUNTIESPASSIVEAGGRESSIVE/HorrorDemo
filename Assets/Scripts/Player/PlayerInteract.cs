@@ -28,19 +28,20 @@ public class PlayerInteract : MonoBehaviour
     // raycast which checks for the interactable layer 
     void Update()
     {
-
-        if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.forward), 
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, 
             out hitobject, RayLength, InteractableLayer))
         {
             // show the appropriate tooltip
             ShowTooltip();
 
-            // selection key and cheks for interactable interface which then calls the on interact
-            if (Input.GetKeyDown(KeyCode.E) && 
-                hitobject.collider.gameObject.TryGetComponent(out IInteractable interactobj))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                PlayerScript.LookingAtItem = true;
-                interactobj.OnInteract();
+                // selection key and cheks for interactable interface which then calls the on interact
+                if (hitobject.collider.gameObject.TryGetComponent(out IInteractable interactobj))
+                {
+                    PlayerScript.LookingAtItem = true;
+                    interactobj.OnInteract();
+                }
             }
         }
     }
