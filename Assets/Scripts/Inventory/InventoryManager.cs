@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -8,12 +9,7 @@ public class InventoryManager : MonoBehaviour
 
     private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
 
-    public static InventoryManager instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    public static event Action<List<InventoryItemData>> OnInventoryChanged;
 
     private void OnEnable()
     {
@@ -28,5 +24,7 @@ public class InventoryManager : MonoBehaviour
     {
         InventoryItemData addObj = new InventoryItemData(SOitem);
         InvItems.Add(addObj);
+
+        OnInventoryChanged.Invoke(InvItems);
     }
 }
