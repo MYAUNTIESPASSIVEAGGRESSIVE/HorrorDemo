@@ -15,7 +15,7 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Start()
     {
-        //Description = TMP_Text.Find
+        //Description = TryGetComponent();
     }
 
     public void EmptySlot()

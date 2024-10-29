@@ -44,6 +44,7 @@ public class PlayerControl : MonoBehaviour
             {
                 InventoryCanvas.gameObject.SetActive(true);
                 Paused = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
     }

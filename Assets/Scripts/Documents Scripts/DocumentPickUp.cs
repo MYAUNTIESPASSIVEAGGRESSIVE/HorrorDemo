@@ -58,9 +58,10 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                //adds item to the inventory on exit
-                AddToInventory.Invoke(Document);
+                //adds item to the inventory on exit + destroys the document
+                AddToInventory?.Invoke(Document);
                 Destroy(gameObject);
+                // sets viewing booleans inactive + any game objects false
                 ControlsText.gameObject.SetActive(false);
                 ClearVersionCanvas.SetActive(false);
                 PlayerScript.LookingAtItem = false;

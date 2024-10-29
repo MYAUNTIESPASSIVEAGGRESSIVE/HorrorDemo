@@ -21,6 +21,7 @@ public class InventoryCanvasScript : MonoBehaviour
         {
             PlayerScript.Paused = false;
             InventoryCanvas.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
