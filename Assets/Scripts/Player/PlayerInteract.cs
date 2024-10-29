@@ -34,13 +34,14 @@ public class PlayerInteract : MonoBehaviour
             // show the appropriate tooltip
             ShowTooltip();
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !PlayerScript.LookingAtItem)
             {
                 // selection key and cheks for interactable interface which then calls the on interact
                 if (hitobject.collider.gameObject.TryGetComponent(out IInteractable interactobj))
                 {
                     PlayerScript.LookingAtItem = true;
                     interactobj.OnInteract();
+
                 }
             }
         }

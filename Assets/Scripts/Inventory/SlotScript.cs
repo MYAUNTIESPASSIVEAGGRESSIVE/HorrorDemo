@@ -8,7 +8,7 @@ public class SlotScript : MonoBehaviour
 {
     [Header("References")]
     public Image Icon;
-    public TextMeshPro Description;
+    public TMP_Text Description;
 
     public void EmptySlot()
     {

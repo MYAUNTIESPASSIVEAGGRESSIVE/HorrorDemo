@@ -17,6 +17,7 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     [Header("Text References")]
     public TMP_Text WrittenText;
     public TMP_Text ClearText;
+    public TMP_Text ControlsText;
 
     private bool ClearShow;
     private bool ViewingDocument;
@@ -28,6 +29,8 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     {
         // document is moved in front of the player and is now readable
         PickupObject.transform.position = ReadHolder.transform.position;
+
+        ControlsText.gameObject.SetActive(true);
 
         ViewingDocument = true;
     }
@@ -58,6 +61,8 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
                 //adds item to the inventory on exit
                 AddToInventory.Invoke(Document);
                 Destroy(gameObject);
+                ControlsText.gameObject.SetActive(false);
+                ClearVersionCanvas.SetActive(false);
                 PlayerScript.LookingAtItem = false;
                 ViewingDocument = false;
             }
