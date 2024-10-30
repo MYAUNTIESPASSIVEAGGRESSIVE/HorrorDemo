@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -35,8 +34,21 @@ public class InventoryCanvasScript : MonoBehaviour
         InventoryManager.OnInventoryChanged -= CreateInventory;
     }
 
-    void CreateInventory(List<InventoryItemData> Inventory)
+    private void UpdateInventory()
     {
+        foreach(Transform Children in SlotHolder.transform)
+        {
+            Destroy(Children.gameObject);
+        }
+        InventorySlots = new List<SlotScript>(12);
+
+    }
+
+
+    public void CreateInventory(List<InventoryItemData> Inventory)
+    {
+        UpdateInventory();
+
         for (int i = 0;  i < InventorySlots.Capacity; i++)
         {
             AddSlot();
@@ -48,7 +60,7 @@ public class InventoryCanvasScript : MonoBehaviour
         }
     }
 
-    void AddSlot()
+    public void AddSlot()
     {
         GameObject AddedSlot = Instantiate(Slots);
         AddedSlot.transform.SetParent(SlotHolder.transform);

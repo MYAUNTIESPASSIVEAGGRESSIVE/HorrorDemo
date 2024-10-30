@@ -5,7 +5,7 @@ using System;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<InventoryItemData> InvItems;
+    public List<InventoryItemData> InvItems = new List<InventoryItemData>();
 
     private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
 
