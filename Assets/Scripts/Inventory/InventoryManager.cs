@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     public List<InventoryItemData> InvItems = new List<InventoryItemData>();
 
-    private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
+    //private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
 
     public static event Action<List<InventoryItemData>> OnInventoryChanged;
 

@@ -36,7 +36,6 @@ public class InventoryCanvasScript : MonoBehaviour
 
     private void UpdateInventory()
     {
-        Debug.Log("u9fjuhf");
         foreach(Transform Children in transform)
         {
             Destroy(Children.gameObject);

@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
 {
     [Header("References")]
     public CharacterController PlayerController;
+    public InventoryCanvasScript InventoryScript;
     public Transform PlTransform;
     public Transform CamHolder;
     public Canvas InventoryCanvas;
@@ -43,6 +44,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.I))
             {
                 InventoryCanvas.gameObject.SetActive(true);
+                //InventoryScript.CreateInventory();
                 Paused = true;
                 Cursor.lockState = CursorLockMode.None;
             }
