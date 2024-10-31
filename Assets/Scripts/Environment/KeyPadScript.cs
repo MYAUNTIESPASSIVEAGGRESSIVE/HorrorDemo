@@ -8,14 +8,13 @@ public class KeyPadScript : MonoBehaviour, IInteractable
     public PlayerControl PMovementScript;
     public GameObject MainCam;
     public GameObject ViewingSpot;
-    private Transform OGCamPos;
+    public GameObject CamHolder;
 
     private bool ViewingObject;
 
     void Start()
     {
-        PMovementScript = GetComponent<PlayerControl>();
-        OGCamPos.position = MainCam.transform.position;
+            
     }
 
     public void OnInteract()
@@ -23,6 +22,7 @@ public class KeyPadScript : MonoBehaviour, IInteractable
         MainCam.transform.position = ViewingSpot.transform.position;
         PMovementScript.Paused = true;
         ViewingObject = true;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            MainCam.transform.position = OGCamPos.position;
+            
             PMovementScript.Paused = false;
             ViewingObject = false;
         }

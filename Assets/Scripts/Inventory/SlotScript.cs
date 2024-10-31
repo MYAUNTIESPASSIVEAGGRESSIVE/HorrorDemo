@@ -9,7 +9,7 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [Header("References")]
     public Image Icon;
-    public TMP_Text Description;
+    //public TMP_Text Description;
 
     private bool mouseOver;
 
@@ -21,7 +21,7 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void EmptySlot()
     {
         Icon.enabled = false;
-        Description.enabled = false;
+        //Description.enabled = false;
     }
 
     public void CreateSlot(InventoryItemData WhatItem)
@@ -35,14 +35,14 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         Icon.enabled = true;
 
         Icon.sprite = WhatItem.itemdata.ItemIcon;
-        Description.text = WhatItem.itemdata.ItemDescription;
+        //Description.text = WhatItem.itemdata.ItemDescription;
     }
 
     private void Update()
     {
         if (mouseOver)
         {
-            Description.enabled = true;
+            //Description.enabled = true;
         }
     }
 
@@ -54,5 +54,10 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
+    }
+
+    public void SlotPressed()
+    {
+
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using TMPro;
 using UnityEngine;
 using System;
+using JetBrains.Annotations;
 
 public class DocumentPickUp : MonoBehaviour, IInteractable
 {
@@ -33,6 +34,7 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
         ControlsText.gameObject.SetActive(true);
 
         ViewingDocument = true;
+
     }
 
 

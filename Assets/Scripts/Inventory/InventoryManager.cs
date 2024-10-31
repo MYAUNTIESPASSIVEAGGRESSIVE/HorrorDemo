@@ -25,6 +25,7 @@ public class InventoryManager : MonoBehaviour
         InventoryItemData addObj = new InventoryItemData(SOitem);
         InvItems.Add(addObj);
 
+        Debug.Log("Add to UI");
         OnInventoryChanged?.Invoke(InvItems);
     }
 }

@@ -192,11 +192,9 @@ public class SelectionOutlineController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit , 3f, LayerMask.GetMask("Interactables")))
             {
 
                 TargetRenderer = hit.transform.GetComponent<Renderer>();
@@ -217,6 +215,11 @@ public class SelectionOutlineController : MonoBehaviour
                 }
                 //Debug.DrawRay(transform.position, hit.point - transform.position, Color.blue);
                 lastTarget = TargetRenderer;
+
+            if (Input.GetKeyDown(KeyCode.E) && Selected)
+            {
+                ClearTarget();
+            }
             }
             else
             {
@@ -228,10 +231,5 @@ public class SelectionOutlineController : MonoBehaviour
                 }
             }
             //cmd.Blit(OutlineRT,)
-        }
-        if (Input.GetMouseButtonUp(0) && Selected)
-        {
-            ClearTarget();
-        }
     }
 }

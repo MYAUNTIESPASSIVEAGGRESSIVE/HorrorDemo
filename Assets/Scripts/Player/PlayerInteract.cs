@@ -1,11 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Interactable interface that allows for multiple objects to call different actions on interaction.
 interface IInteractable
 {
+    public enum InteractType
+    {
+        Document,
+        Object,
+        Usable
+    }
+
     public void OnInteract(){}
 }
 
@@ -14,6 +22,7 @@ public class PlayerInteract : MonoBehaviour
     [Header("References")]
     public GameObject Camera;
     public PlayerControl PlayerScript;
+    public TMP_Text ToolTipText;
 
     [Header("Interaction Variables")]
     public LayerMask InteractableLayer;
@@ -41,13 +50,12 @@ public class PlayerInteract : MonoBehaviour
                 {
                     PlayerScript.LookingAtItem = true;
                     interactobj.OnInteract();
-
                 }
             }
         }
     }
 
-    // function which changes the tooltip canvas text to match the object
+    // function which changes the tooltip text to match the object
     private void ShowTooltip()
     {
         

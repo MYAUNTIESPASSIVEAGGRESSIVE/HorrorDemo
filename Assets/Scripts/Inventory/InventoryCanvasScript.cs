@@ -36,17 +36,18 @@ public class InventoryCanvasScript : MonoBehaviour
 
     private void UpdateInventory()
     {
-        foreach(Transform Children in SlotHolder.transform)
+        foreach(Transform Children in transform)
         {
             Destroy(Children.gameObject);
         }
         InventorySlots = new List<SlotScript>(12);
-
     }
 
 
     public void CreateInventory(List<InventoryItemData> Inventory)
     {
+        Debug.Log("Added Object");
+        
         UpdateInventory();
 
         for (int i = 0;  i < InventorySlots.Capacity; i++)
@@ -62,8 +63,10 @@ public class InventoryCanvasScript : MonoBehaviour
 
     public void AddSlot()
     {
+        Debug.Log("AddedSlot");
+        
         GameObject AddedSlot = Instantiate(Slots);
-        AddedSlot.transform.SetParent(SlotHolder.transform);
+        AddedSlot.transform.SetParent(SlotHolder.transform, false);
 
         SlotScript slotScript = AddedSlot.GetComponent<SlotScript>();
         slotScript.EmptySlot();
