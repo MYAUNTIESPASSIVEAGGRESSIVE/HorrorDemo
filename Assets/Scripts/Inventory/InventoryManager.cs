@@ -5,11 +5,12 @@ using System;
 
 public class InventoryManager : MonoBehaviour
 {
+
     public List<InventoryItemData> InvItems = new List<InventoryItemData>();
 
-    //private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
+    public InventoryCanvasScript InvCanvasScript;
 
-    public static event Action<List<InventoryItemData>> OnInventoryChanged;
+    //private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
 
     private void OnEnable()
     {
@@ -25,7 +26,6 @@ public class InventoryManager : MonoBehaviour
         InventoryItemData addObj = new InventoryItemData(SOitem);
         InvItems.Add(addObj);
 
-        Debug.Log("Add to UI");
-        OnInventoryChanged?.Invoke(InvItems);
+        InvCanvasScript.CreateInventory(InvItems);
     }
 }

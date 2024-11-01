@@ -9,19 +9,19 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [Header("References")]
     public Image Icon;
-    //public TMP_Text Description;
+    public TMP_Text Description;
 
     private bool mouseOver;
 
     private void Start()
     {
-        //Description = TryGetComponent();
+        //Description = TryGetComponent(TMP_Text);
     }
 
     public void EmptySlot()
     {
         Icon.enabled = false;
-        //Description.enabled = false;
+        Description.enabled = false;
     }
 
     public void CreateSlot(InventoryItemData WhatItem)
@@ -35,15 +35,12 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         Icon.enabled = true;
 
         Icon.sprite = WhatItem.itemdata.ItemIcon;
-        //Description.text = WhatItem.itemdata.ItemDescription;
+        Description.text = WhatItem.itemdata.ItemDescription;
     }
 
     private void Update()
     {
-        if (mouseOver)
-        {
-            //Description.enabled = true;
-        }
+        mouseOver = Description.enabled ? false : true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -56,8 +53,20 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         mouseOver = false;
     }
 
-    public void SlotPressed()
+    private void ViewObject(InventoryItemData WhatItem)
     {
+        if (WhatItem == null)
+        {
+            EmptySlot();
+            return;
+        }
 
+        InventoryCanvasScript CanvasScript = GetComponentInParent<InventoryCanvasScript>();
+
+        CanvasScript.InventoryCanvas.gameObject.SetActive(false);
+        
+        GameObject SlotPrefab = WhatItem.itemdata.ObjectPrefab;
+
+        Instantiate(SlotPrefab);
     }
 }

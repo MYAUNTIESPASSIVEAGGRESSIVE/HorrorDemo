@@ -12,7 +12,5 @@ public class SO_InventoryItems : ScriptableObject
 
     public Sprite ItemIcon;
 
-    public GameObject DocumentTemplate;
-
-    public TMP_Text DoucmentText;
+    public GameObject ObjectPrefab;
 }

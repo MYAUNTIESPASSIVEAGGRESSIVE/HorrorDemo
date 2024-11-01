@@ -23,20 +23,10 @@ public class InventoryCanvasScript : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
-
-    private void OnEnable()
-    {
-        InventoryManager.OnInventoryChanged += CreateInventory;
-    }
-
-    private void OnDisable()
-    {
-        InventoryManager.OnInventoryChanged -= CreateInventory;
-    }
-
     private void UpdateInventory()
     {
-        foreach(Transform Children in transform)
+
+        foreach(Transform Children in SlotHolder.transform)
         {
             Destroy(Children.gameObject);
         }
@@ -46,7 +36,6 @@ public class InventoryCanvasScript : MonoBehaviour
 
     public void CreateInventory(List<InventoryItemData> Inventory)
     {
-        Debug.Log("Added Object");
         
         UpdateInventory();
 
@@ -63,7 +52,6 @@ public class InventoryCanvasScript : MonoBehaviour
 
     public void AddSlot()
     {
-        Debug.Log("AddedSlot");
         
         GameObject AddedSlot = Instantiate(Slots);
         AddedSlot.transform.SetParent(SlotHolder.transform, false);

@@ -50,6 +50,7 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     {
         if (ViewingDocument)
         {
+
             // when tab is pressed then the clear version of the document is now visable
             if (Input.GetKeyDown(KeyCode.Tab))
             {
