@@ -41,10 +41,10 @@ public class PlayerControl : MonoBehaviour
 
             CameraRotation();
 
+            // if the player presses I then the player will view in the inventory
             if (Input.GetKeyDown(KeyCode.I))
             {
                 InventoryCanvas.gameObject.SetActive(true);
-                //InventoryScript.CreateInventory();
                 Paused = true;
                 Cursor.lockState = CursorLockMode.None;
             }

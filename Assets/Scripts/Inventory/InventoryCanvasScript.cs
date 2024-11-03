@@ -50,6 +50,14 @@ public class InventoryCanvasScript : MonoBehaviour
         }
     }
 
+    public void PressedSlot(List<InventoryItemData> Inventory)
+    {
+        for (int i = 0; i < Inventory.Count; i++)
+        {
+            InventorySlots[i].ViewObject(Inventory[i]);
+        }
+    }
+
     public void AddSlot()
     {
         

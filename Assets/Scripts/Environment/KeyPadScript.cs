@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class KeyPadScript : MonoBehaviour, IInteractable
 {
+    [Header("References")]
     public PlayerControl PMovementScript;
-    public GameObject MainCam;
-    public GameObject ViewingSpot;
-    public GameObject CamHolder;
+    public Transform MainCam;
+    public Transform ViewingSpot;
+    public Transform CamHolder;
 
     private bool ViewingObject;
 
@@ -19,7 +17,7 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 
     public void OnInteract()
     {
-        MainCam.transform.position = ViewingSpot.transform.position;
+        MainCam.position = ViewingSpot.position;
         PMovementScript.Paused = true;
         ViewingObject = true;
         gameObject.GetComponent<BoxCollider>().enabled = false;

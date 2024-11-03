@@ -53,7 +53,7 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         mouseOver = false;
     }
 
-    private void ViewObject(InventoryItemData WhatItem)
+    public void ViewObject(InventoryItemData WhatItem)
     {
         if (WhatItem == null)
         {
