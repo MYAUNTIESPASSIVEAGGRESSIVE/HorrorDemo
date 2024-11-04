@@ -53,8 +53,8 @@ public class PlayerControl : MonoBehaviour
 
     private void CameraRotation()
     {
-        float mouseX = Input.GetAxis("Mouse X") * LookRotSpeed * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * LookVertSpeed * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * LookRotSpeed;
+        float mouseY = Input.GetAxis("Mouse Y") * LookVertSpeed;
 
         CamRotX -= mouseY;
         CamRotX = Mathf.Clamp(CamRotX, -90f, 90f);

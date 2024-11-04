@@ -14,6 +14,8 @@ public class InventoryCanvasScript : MonoBehaviour
     public GameObject Slots;
     public List<SlotScript> InventorySlots = new List<SlotScript>(12);
 
+    public bool EnableViewing = false;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -33,6 +35,11 @@ public class InventoryCanvasScript : MonoBehaviour
         InventorySlots = new List<SlotScript>(12);
     }
 
+    public void ReViewObject()
+    {
+        Debug.Log("ssssssss");
+        EnableViewing = true;
+    }
 
     public void CreateInventory(List<InventoryItemData> Inventory)
     {
@@ -47,14 +54,6 @@ public class InventoryCanvasScript : MonoBehaviour
         for(int i = 0; i < Inventory.Count; i++)
         {
             InventorySlots[i].CreateSlot(Inventory[i]);
-        }
-    }
-
-    public void PressedSlot(List<InventoryItemData> Inventory)
-    {
-        for (int i = 0; i < Inventory.Count; i++)
-        {
-            InventorySlots[i].ViewObject(Inventory[i]);
         }
     }
 

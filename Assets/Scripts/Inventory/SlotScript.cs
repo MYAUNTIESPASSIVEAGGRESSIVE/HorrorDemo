@@ -4,13 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("References")]
     public Image Icon;
     public TMP_Text Description;
+    public Transform ReadHolder;
 
+    public bool ReviewingObject;
     private bool mouseOver;
 
     private void Start()
@@ -41,6 +44,11 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Update()
     {
         mouseOver = Description.enabled ? false : true;
+
+        if (Input.GetKeyDown(KeyCode.Escape) && ReviewingObject)
+        {
+            ReviewingObject = false;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -51,22 +59,5 @@ public class SlotScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         mouseOver = false;
-    }
-
-    public void ViewObject(InventoryItemData WhatItem)
-    {
-        if (WhatItem == null)
-        {
-            EmptySlot();
-            return;
-        }
-
-        InventoryCanvasScript CanvasScript = GetComponentInParent<InventoryCanvasScript>();
-
-        CanvasScript.InventoryCanvas.gameObject.SetActive(false);
-        
-        GameObject SlotPrefab = WhatItem.itemdata.ObjectPrefab;
-
-        Instantiate(SlotPrefab);
     }
 }

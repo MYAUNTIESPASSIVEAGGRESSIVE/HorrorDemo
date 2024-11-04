@@ -14,7 +14,7 @@ interface IInteractable
         Usable
     }
 
-    public void OnInteract(){}
+    public void OnInteract() {}
 }
 
 public class PlayerInteract : MonoBehaviour
@@ -27,6 +27,7 @@ public class PlayerInteract : MonoBehaviour
     [Header("Interaction Variables")]
     public LayerMask InteractableLayer;
     public float RayLength = 10f;
+    public GameObject Crosshair;
     private RaycastHit hitobject;
 
     private void Start()
@@ -50,6 +51,8 @@ public class PlayerInteract : MonoBehaviour
                 {
                     PlayerScript.LookingAtItem = true;
                     interactobj.OnInteract();
+
+                    Crosshair.SetActive(false);
                 }
             }
         }
