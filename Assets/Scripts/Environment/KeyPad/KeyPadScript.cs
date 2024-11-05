@@ -6,7 +6,7 @@ using UnityEngine;
 public class KeyPadScript : MonoBehaviour, IInteractable
 {
     [Header("References")]
-    public PlayerControl PMovementScript;
+    public GameObject Player;
     public Transform MainCam;
     public Transform ViewingSpot;
     public Transform CamHolder;
@@ -20,14 +20,15 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 
     void Start()
     {
-            
+          
     }
 
     public void OnInteract()
     {
         MainCam.LookAt(transform.position);
         MainCam.transform.position = ViewingSpot.transform.position;
-        PMovementScript.Paused = true;
+        Player.GetComponent<PlayerControl>().enabled = false;
+        ViewingObject = true;
         Cursor.lockState = CursorLockMode.None;
         gameObject.GetComponent<BoxCollider>().enabled = false;
     }
@@ -39,7 +40,8 @@ public class KeyPadScript : MonoBehaviour, IInteractable
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 MainCam.transform.position = CamHolder.transform.position;
-                PMovementScript.Paused = false;
+                Player.GetComponent<PlayerControl>().enabled = true;
+                Player.GetComponent<PlayerControl>().LookingAtItem = false;
                 ViewingObject = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 gameObject.GetComponent<BoxCollider>().enabled = true;

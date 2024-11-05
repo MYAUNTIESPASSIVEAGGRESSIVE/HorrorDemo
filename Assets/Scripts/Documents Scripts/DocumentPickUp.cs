@@ -29,8 +29,9 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         // document is moved in front of the player and is now readable
-        PickupObject.transform.LookAt(ReadHolder.transform);
+        //PickupObject.transform.LookAt(ReadHolder.transform);
         PickupObject.transform.position = ReadHolder.transform.position;
+        PickupObject.transform.rotation = ReadHolder.transform.rotation;
 
         ControlsText.gameObject.SetActive(true);
 
