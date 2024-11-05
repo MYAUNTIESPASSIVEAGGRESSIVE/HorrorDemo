@@ -15,3 +15,4 @@ MonoBehaviour:
   ItemName: Test Document
   ItemDescription: This is a test document for my game
   ItemIcon: {fileID: 21300000, guid: 025eb0f68fd335b4199d45d7afcbc5c7, type: 3}
+  ObjectPrefab: {fileID: 2896116993155115319, guid: f2a739acf6a760140badc402eaf0a790, type: 3}

@@ -13,7 +13,9 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     public GameObject ReadHolder;
     public GameObject ClearVersionCanvas;
     public SO_InventoryItems Document;
-    public PlayerControl PlayerScript;
+    public GameObject Player;
+    public PlayerControl PlayerMoveScript;
+    public PlayerInteract PlayerInteractScript;
 
     [Header("Text References")]
     public TMP_Text WrittenText;
@@ -25,6 +27,12 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
 
     // event which uses the pickups SO and add it to the inventory
     public static event Action<SO_InventoryItems> AddToInventory;
+
+    private void Start()
+    {
+        PlayerInteractScript = Player.GetComponent<PlayerInteract>();
+        PlayerMoveScript = Player.GetComponent<PlayerControl>();
+    }
 
     public void OnInteract()
     {
@@ -52,7 +60,6 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     {
         if (ViewingDocument)
         {
-
             // when tab is pressed then the clear version of the document is now visable
             if (Input.GetKeyDown(KeyCode.Tab))
             {
@@ -69,7 +76,8 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
                 // sets viewing booleans inactive + any game objects false
                 ControlsText.gameObject.SetActive(false);
                 ClearVersionCanvas.SetActive(false);
-                PlayerScript.LookingAtItem = false;
+                PlayerMoveScript.LookingAtItem = false;
+                PlayerInteractScript.CrosshairActive = true;
                 ViewingDocument = false;
             }
         }

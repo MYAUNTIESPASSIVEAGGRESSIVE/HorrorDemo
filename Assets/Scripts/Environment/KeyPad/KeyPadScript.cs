@@ -3,6 +3,11 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 
+interface IUnlockable
+{
+    public void Unlock();
+}
+
 public class KeyPadScript : MonoBehaviour, IInteractable
 {
     [Header("References")]
@@ -12,21 +17,19 @@ public class KeyPadScript : MonoBehaviour, IInteractable
     public Transform CamHolder;
     public TMP_Text ScreenString;
 
+    public GameObject UnlockableObject;
+
     [Header("Variables")]
     public string AnswerString;
     public int ButtonNumber;
 
     private bool ViewingObject;
 
-    void Start()
-    {
-          
-    }
 
     public void OnInteract()
     {
-        MainCam.LookAt(transform.position);
         MainCam.transform.position = ViewingSpot.transform.position;
+        MainCam.transform.rotation = ViewingSpot.transform.rotation;
         Player.GetComponent<PlayerControl>().enabled = false;
         ViewingObject = true;
         Cursor.lockState = CursorLockMode.None;
@@ -40,8 +43,11 @@ public class KeyPadScript : MonoBehaviour, IInteractable
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 MainCam.transform.position = CamHolder.transform.position;
+
+                //Setting player movement bools and crosshair active again.
                 Player.GetComponent<PlayerControl>().enabled = true;
                 Player.GetComponent<PlayerControl>().LookingAtItem = false;
+                Player.GetComponent<PlayerInteract>().CrosshairActive = true;
                 ViewingObject = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 gameObject.GetComponent<BoxCollider>().enabled = true;
@@ -90,6 +96,6 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 
     public void DeleteNumber()
     {
-        
+        //ScreenString.text = 
     }
 }

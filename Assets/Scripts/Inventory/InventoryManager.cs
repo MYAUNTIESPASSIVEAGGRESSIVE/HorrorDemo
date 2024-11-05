@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class InventoryManager : MonoBehaviour
 {
-
+    //lists and dictionarys
     public List<InventoryItemData> InvItems = new List<InventoryItemData>();
-
+    // script references
     public InventoryCanvasScript InvCanvasScript;
-
-    //private Dictionary<SO_InventoryItems, InventoryItemData> InvObjects;
 
     private void OnEnable()
     {

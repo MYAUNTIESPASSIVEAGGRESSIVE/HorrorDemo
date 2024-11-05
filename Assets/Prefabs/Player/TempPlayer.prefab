@@ -643,13 +643,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 8672741176216442653}
-  InventoryScript: {fileID: 0}
+  InventoryScript: {fileID: 363422603515135497}
   PlTransform: {fileID: 5335917741337494895}
   CamHolder: {fileID: 5781791359523282844}
   InventoryCanvas: {fileID: 7096682656908514663}
   MoveSpeed: 5
-  LookRotSpeed: 300
-  LookVertSpeed: 200
+  LookRotSpeed: 3
+  LookVertSpeed: 3
   LookingAtItem: 0
   Paused: 0
 --- !u!114 &817237404907513695
@@ -671,6 +671,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   RayLength: 3
+  Crosshair: {fileID: 8509129130689526686}
+  CrosshairActive: 0
 --- !u!1 &4297757508488193193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,7 +1564,6 @@ MonoBehaviour:
   SlotHolder: {fileID: 4717966150462839029}
   Slots: {fileID: 1670553842679065881, guid: 1ac7a207f098bbe46884cf059bbc0a62, type: 3}
   InventorySlots: []
-  EnableViewing: 0
 --- !u!1 &8006215786288085550
 GameObject:
   m_ObjectHideFlags: 0

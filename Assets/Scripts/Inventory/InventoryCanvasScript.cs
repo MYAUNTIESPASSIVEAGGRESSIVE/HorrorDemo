@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,12 +10,11 @@ public class InventoryCanvasScript : MonoBehaviour
     public PlayerControl PlayerScript;
     public Canvas InventoryCanvas;
     public Image SlotHolder;
+    private Button SlotButton;
 
     [Header("Inventory References")]
     public GameObject Slots;
     public List<SlotScript> InventorySlots = new List<SlotScript>(12);
-
-    public bool EnableViewing = false;
 
     private void Update()
     {
@@ -35,15 +35,8 @@ public class InventoryCanvasScript : MonoBehaviour
         InventorySlots = new List<SlotScript>(12);
     }
 
-    public void ReViewObject()
-    {
-        Debug.Log("ssssssss");
-        EnableViewing = true;
-    }
-
     public void CreateInventory(List<InventoryItemData> Inventory)
     {
-        
         UpdateInventory();
 
         for (int i = 0;  i < InventorySlots.Capacity; i++)

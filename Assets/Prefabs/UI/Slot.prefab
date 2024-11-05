@@ -168,7 +168,8 @@ MonoBehaviour:
   Icon: {fileID: 4379413193428184432}
   Description: {fileID: 9028720162008143586, guid: 9f602e3012682574d9363f6f6256a7bf, type: 3}
   ReadHolder: {fileID: 7846299375379012250, guid: a63356b1b359e3d44a5b0bfd5b4bc4b5, type: 3}
-  ReviewingObject: 0
+  CanvasScript: {fileID: 0}
+  ButtonPressed: 0
 --- !u!114 &5170612713032100315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,9 +214,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8977681643488698361, guid: b4baf5e9175d8624f93ef5a011b89907, type: 3}
-        m_TargetAssemblyTypeName: InventoryCanvasScript, Assembly-CSharp
-        m_MethodName: ReViewObject
+      - m_Target: {fileID: 6033621159285536018}
+        m_TargetAssemblyTypeName: SlotScript, Assembly-CSharp
+        m_MethodName: OnButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

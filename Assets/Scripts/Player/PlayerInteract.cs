@@ -5,15 +5,8 @@ using TMPro;
 using UnityEngine;
 
 // Interactable interface that allows for multiple objects to call different actions on interaction.
-interface IInteractable
+interface IInteractable 
 {
-    public enum InteractType
-    {
-        Document,
-        Object,
-        Usable
-    }
-
     public void OnInteract() {}
 }
 
@@ -28,12 +21,10 @@ public class PlayerInteract : MonoBehaviour
     public LayerMask InteractableLayer;
     public float RayLength = 10f;
     public GameObject Crosshair;
+    public bool CrosshairActive = true;
+
+
     private RaycastHit hitobject;
-
-    private void Start()
-    {
-
-    }
 
     // raycast which checks for the interactable layer 
     void Update()
@@ -52,10 +43,12 @@ public class PlayerInteract : MonoBehaviour
                     PlayerScript.LookingAtItem = true;
                     interactobj.OnInteract();
 
-                    Crosshair.SetActive(false);
+                    CrosshairActive = false;
                 }
             }
         }
+
+        if (!CrosshairActive) Crosshair.SetActive(false); else Crosshair.SetActive(true);
     }
 
     // function which changes the tooltip text to match the object
