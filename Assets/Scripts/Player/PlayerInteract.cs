@@ -21,10 +21,14 @@ public class PlayerInteract : MonoBehaviour
     public LayerMask InteractableLayer;
     public float RayLength = 10f;
     public GameObject Crosshair;
-    public bool CrosshairActive = true;
 
 
     private RaycastHit hitobject;
+
+    private void Start()
+    {
+        Crosshair.SetActive(true);
+    }
 
     // raycast which checks for the interactable layer 
     void Update()
@@ -43,12 +47,10 @@ public class PlayerInteract : MonoBehaviour
                     PlayerScript.LookingAtItem = true;
                     interactobj.OnInteract();
 
-                    CrosshairActive = false;
+                    Crosshair.SetActive(false);
                 }
             }
         }
-
-        if (!CrosshairActive) Crosshair.SetActive(false); else Crosshair.SetActive(true);
     }
 
     // function which changes the tooltip text to match the object

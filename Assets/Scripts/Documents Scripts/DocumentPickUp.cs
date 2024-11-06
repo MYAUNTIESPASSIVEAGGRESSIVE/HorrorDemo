@@ -77,7 +77,7 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
                 ControlsText.gameObject.SetActive(false);
                 ClearVersionCanvas.SetActive(false);
                 PlayerMoveScript.LookingAtItem = false;
-                PlayerInteractScript.CrosshairActive = true;
+                PlayerInteractScript.Crosshair.SetActive(true);
                 ViewingDocument = false;
             }
         }

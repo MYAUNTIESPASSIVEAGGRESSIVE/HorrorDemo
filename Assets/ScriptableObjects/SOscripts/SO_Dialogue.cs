@@ -8,7 +8,7 @@ public class SO_Dialogue : ScriptableObject
     public string SpeakerName;
 
     [TextArea(5, 10)]
-    public string SubtitleTexts;
+    public string[] SubtitleTexts;
 
     public AudioClip SpeechClip;
 }

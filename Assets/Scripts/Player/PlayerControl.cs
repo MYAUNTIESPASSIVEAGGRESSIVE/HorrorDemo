@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     [Header("References")]
     public CharacterController PlayerController;
     public InventoryCanvasScript InventoryScript;
+    public Animator PlayerAnim;
     public Transform PlTransform;
     public Transform CamHolder;
     public Canvas InventoryCanvas;
@@ -24,6 +25,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
+        PlayerAnim = gameObject.GetComponentInChildren<Animator>();
         PlayerController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -32,6 +34,8 @@ public class PlayerControl : MonoBehaviour
     {
         HozPos = Input.GetAxisRaw("Horizontal");
         VertPos = Input.GetAxisRaw("Vertical");
+
+        PlayerAnim.SetFloat("MoveSpeed", Mathf.Max(Mathf.Abs(HozPos), Mathf.Abs(VertPos)));
 
         // if they are paused they cannot move or look around
         if (!Paused)
@@ -69,5 +73,18 @@ public class PlayerControl : MonoBehaviour
         Vector3 playerMove = transform.right * HozPos + transform.forward * VertPos;
 
         PlayerController.Move(playerMove * MoveSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SubTrigger"))
+        {
+            if (other.TryGetComponent(out ISubtitleCreate SubtitleCreator))
+            {
+                SubtitleCreator.StartDialouge();
+            }
+
+            Destroy(other.gameObject);
+        }
     }
 }

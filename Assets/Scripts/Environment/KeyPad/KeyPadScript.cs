@@ -47,7 +47,7 @@ public class KeyPadScript : MonoBehaviour, IInteractable
                 //Setting player movement bools and crosshair active again.
                 Player.GetComponent<PlayerControl>().enabled = true;
                 Player.GetComponent<PlayerControl>().LookingAtItem = false;
-                Player.GetComponent<PlayerInteract>().CrosshairActive = true;
+                Player.GetComponent<PlayerInteract>().Crosshair.SetActive(true);
                 ViewingObject = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 gameObject.GetComponent<BoxCollider>().enabled = true;

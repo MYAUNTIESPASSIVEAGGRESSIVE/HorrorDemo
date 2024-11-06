@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Document
+  - Grass
+  - Path
+  - Concrete
+  - Leaves
+  - SubTrigger
   layers:
   - Default
   - TransparentFX
@@ -13,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Interactables
-  - 
+  - Ground
   - 
   - 
   - 
