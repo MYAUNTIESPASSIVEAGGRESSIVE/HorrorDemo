@@ -40,6 +40,8 @@ public class PlayerControl : MonoBehaviour
         // if they are paused they cannot move or look around
         if (!Paused)
         {
+            PlayerAnim.SetBool("Looking", false);
+
             // if the player is looking at an item then they will not be able to move.
             if (!LookingAtItem) CharacterMovement();
 
@@ -53,6 +55,7 @@ public class PlayerControl : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+        else PlayerAnim.SetBool("Looking", true);
     }
 
     private void CameraRotation()
@@ -85,6 +88,17 @@ public class PlayerControl : MonoBehaviour
             }
 
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("SubTrigger"))
+        {
+            if (other.collider.TryGetComponent(out ISubtitleCreate SubtitleCreator))
+            {
+                SubtitleCreator.StartDialouge();
+            }
         }
     }
 }

@@ -12,10 +12,11 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 {
     [Header("References")]
     public GameObject Player;
-    public Transform MainCam;
     public Transform ViewingSpot;
     public Transform CamHolder;
     public TMP_Text ScreenString;
+
+    public Transform OGCamSpot;
 
     public GameObject UnlockableObject;
 
@@ -25,12 +26,19 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 
     private bool ViewingObject;
 
+    private bool AnswerSolved;
+
+    public void Start()
+    {
+        OGCamSpot.transform.position = CamHolder.transform.position;
+        OGCamSpot.transform.rotation = CamHolder.transform.rotation;
+    }
 
     public void OnInteract()
     {
-        MainCam.transform.position = ViewingSpot.transform.position;
-        MainCam.transform.rotation = ViewingSpot.transform.rotation;
-        Player.GetComponent<PlayerControl>().enabled = false;
+        Player.GetComponent<PlayerControl>().Paused = true;
+        CamHolder.transform.position = ViewingSpot.transform.position;
+        CamHolder.transform.rotation = Quaternion.Slerp(CamHolder.transform.rotation, ViewingSpot.transform.rotation, 1f);
         ViewingObject = true;
         Cursor.lockState = CursorLockMode.None;
         gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -40,23 +48,20 @@ public class KeyPadScript : MonoBehaviour, IInteractable
     {
         if (ViewingObject)
         {
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                MainCam.transform.position = CamHolder.transform.position;
+                CamHolder.transform.position = OGCamSpot.transform.position;
+                CamHolder.transform.rotation = Quaternion.Slerp(CamHolder.transform.rotation, OGCamSpot.transform.rotation, 1f);
 
                 //Setting player movement bools and crosshair active again.
-                Player.GetComponent<PlayerControl>().enabled = true;
+                Player.GetComponent<PlayerControl>().Paused = false;
                 Player.GetComponent<PlayerControl>().LookingAtItem = false;
                 Player.GetComponent<PlayerInteract>().Crosshair.SetActive(true);
                 ViewingObject = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 gameObject.GetComponent<BoxCollider>().enabled = true;
             }
-        }
-
-        if(ScreenString.text == AnswerString)
-        {
-            //unlock door or other things
         }
     }
 
@@ -75,6 +80,13 @@ public class KeyPadScript : MonoBehaviour, IInteractable
         if (ScreenString.text == AnswerString)
         {
             ScreenString.text = "Good Job..";
+
+            AnswerSolved = true;
+
+            if (UnlockableObject.TryGetComponent(out IUnlockable UnlockableObj))
+            {
+                UnlockableObj.Unlock();
+            }
         }
         else
         {
@@ -96,6 +108,10 @@ public class KeyPadScript : MonoBehaviour, IInteractable
 
     public void DeleteNumber()
     {
-        //ScreenString.text = 
+        if (!AnswerSolved)
+        {
+            ScreenString.text = ScreenString.text.Remove(ScreenString.text.Length - 1);
+        }
+        else return;
     }
 }

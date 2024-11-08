@@ -13,9 +13,16 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     public GameObject ReadHolder;
     public GameObject ClearVersionCanvas;
     public SO_InventoryItems Document;
+    public SO_Dialogue PickUpDialouge;
     public GameObject Player;
     public PlayerControl PlayerMoveScript;
     public PlayerInteract PlayerInteractScript;
+    public AudioSource PlayerSource;
+
+    public SubtitleManager PlayerSubtitles;
+
+    public AudioClip OpenClip;
+    public AudioClip CloseClip;
 
     [Header("Text References")]
     public TMP_Text WrittenText;
@@ -32,6 +39,8 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
     {
         PlayerInteractScript = Player.GetComponent<PlayerInteract>();
         PlayerMoveScript = Player.GetComponent<PlayerControl>();
+        PlayerSource = Player.GetComponentInChildren<AudioSource>();
+        PlayerSubtitles = Player.GetComponent<SubtitleManager>();
     }
 
     public void OnInteract()
@@ -45,6 +54,8 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
 
         ViewingDocument = true;
 
+        PlayerSource.PlayOneShot(OpenClip);
+        StartDialouge();
     }
 
 
@@ -73,13 +84,29 @@ public class DocumentPickUp : MonoBehaviour, IInteractable
                 //adds item to the inventory on exit + destroys the document
                 AddToInventory?.Invoke(Document);
                 Destroy(gameObject);
+
                 // sets viewing booleans inactive + any game objects false
                 ControlsText.gameObject.SetActive(false);
                 ClearVersionCanvas.SetActive(false);
                 PlayerMoveScript.LookingAtItem = false;
                 PlayerInteractScript.Crosshair.SetActive(true);
                 ViewingDocument = false;
+
+                // Plays audioclip
+                PlayerSource.PlayOneShot(CloseClip);
             }
         }
+    }
+
+    public void StartDialouge()
+    {
+        Subtitles(PickUpDialouge);
+    }
+
+    public void Subtitles(SO_Dialogue DialogueSO)
+    {
+        PlayerSubtitles.DisplaySubtitle(DialogueSO);
+        PlayerSubtitles.PlayNarratorAudio(DialogueSO);
+
     }
 }

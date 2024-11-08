@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 7868117207146924381}
   - component: {fileID: 202938988961731421}
   - component: {fileID: 623214538655662458}
+  - component: {fileID: 966752567294576901}
   m_Layer: 5
   m_Name: SubtitleBox
   m_TagString: Untagged
@@ -702,6 +703,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &966752567294576901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3694029137381077514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a2a835bde396844b2ce39714313712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubtitleName: {fileID: 2706213910583139436}
+  SubtitleText: {fileID: 6614483532829166344}
+  PlayerSource: {fileID: 1651377623250723825}
+  TypingSpeed: 1
 --- !u!1 &3764480455923745590
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +733,7 @@ GameObject:
   - component: {fileID: 8672741176216442653}
   - component: {fileID: 7439576167873245812}
   - component: {fileID: 817237404907513695}
+  - component: {fileID: 399292775771176213}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Player
@@ -736,6 +754,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3090435776561560357}
   - {fileID: 5781791359523282844}
   - {fileID: 386452411144689326}
   - {fileID: 7067975636423521839}
@@ -879,6 +898,33 @@ MonoBehaviour:
     m_Bits: 64
   RayLength: 3
   Crosshair: {fileID: 8509129130689526686}
+--- !u!54 &399292775771176213
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764480455923745590}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &4297757508488193193
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +1000,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4297778505707219010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3090435776561560357}
+  m_Layer: 0
+  m_Name: CamPosReturn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3090435776561560357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297778505707219010}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.0549998, z: 0.09100008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5335917741337494895}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4826535850905162598
 GameObject:
   m_ObjectHideFlags: 0

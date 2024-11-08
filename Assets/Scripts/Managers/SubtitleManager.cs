@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -70,7 +71,7 @@ public class SubtitleManager : MonoBehaviour
 
     private void StopTalking()
     {
-        NoSubtitles = false;
+        NoSubtitles = true;
 
         if (gameObject.activeSelf) gameObject.SetActive(false);
     }
